@@ -1,7 +1,9 @@
+# функция записи в файл (без учёта формата) - вызывается из другой функции
 def file_write(file_name: str, mode: str, data=''):
   with open(file_name, mode) as file:
     file.write(f"{data}\n")
 
+# функция проверки возможности перевести данные в тип int
 def isdig(data):
   try:
     int(data)
@@ -9,6 +11,7 @@ def isdig(data):
   except ValueError:
     return False
 
+# функция чтения из файла построчно и добавления в словарь
 def file_read(name_file):
   cook_book = {}
   with open(name_file, 'r') as file:
@@ -25,6 +28,7 @@ def file_read(name_file):
         cook_book[name_food].append(ingred_dict)
   return cook_book
 
+# функция построчной записи в файл в соответствии с форматом файла txt
 def file_save(name_file):
   for name_food, ingred_list in cook_book.items():
     text = f'\n{name_food} \n{len(ingred_list)}'
@@ -33,6 +37,7 @@ def file_save(name_file):
       text = f"{ingred_food.get('ingredient_name')} | {ingred_food.get('quantity')} | {ingred_food.get('measure')}"
       file_write(name_file, 'a', text)
 
+# Функция для печати списка ингредиентов запрашиваемого блюда
 def list_food():
   n_food = input("Введите название блюда: ").capitalize()
   print(n_food)
@@ -42,10 +47,12 @@ def list_food():
     n +=1
   print(n)
 
+# функция для печати построчно списка всех блюд словаря
 def list_food_dict():
   for food in cook_book.keys():
     print(food)
 
+# функция для составления словаря ингредиентов для конкретных блюд с учётом порций
 def get_shop_list_by_dishes(dishes, person_count):
   shop_dict = {}
   for dish in dishes:
