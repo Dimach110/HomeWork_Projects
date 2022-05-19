@@ -20,3 +20,8 @@ if __name__ == '__main__':
     print(datetime_from)
     response = requests.get(f'{URL}/2.3/questions?fromdate={datetime_from:.0f}&todate={datetime_today:.0f}&order=desc&sort=activity&tagged=Python&site=stackoverflow')
     pprint(response.json())
+
+    # today = datetime.datetime.now()
+    # print(today)
+    # unix_timestamp = datetime.datetime.timestamp(today)
+    # unix_timestamp
